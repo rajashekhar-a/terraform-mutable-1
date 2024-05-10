@@ -3,8 +3,8 @@ resource "aws_route_table" "private-route" {
 
   route = [
     {
-      cidr_block                = "var.DEFAULT_VPC_CIDR"
-      vpc_peering_connection_id = aws_vpc_peering_connection.peer.id
+      cidr_block                   = "var.DEFAULT_VPC_CIDR"
+      vpc_peering_connection_id    = aws_vpc_peering_connection.peer.id
       cidr_block                   = var.DEFAULT_VPC_CIDR
       vpc_peering_connection_id    = aws_vpc_peering_connection.peer.id
       carrier_gateway_id           = ""
@@ -18,11 +18,12 @@ resource "aws_route_table" "private-route" {
       "network_interface_id"       = ""
       "transit_gateway_id"         = ""
       "vpc_endpoint_id"            = ""
+      "core_network_arn"           = ""
     },
 
     {
-      cidr_block       = "0.0.0.0/0"
-      "nat_gateway_id" = aws_nat_gateway.ngw.id
+      cidr_block                   = "0.0.0.0/0"
+      "nat_gateway_id"             = aws_nat_gateway.ngw.id
       cidr_block                   = var.DEFAULT_VPC_CIDR
       vpc_peering_connection_id    = aws_vpc_peering_connection.peer.id
       carrier_gateway_id           = ""
@@ -36,6 +37,7 @@ resource "aws_route_table" "private-route" {
       "network_interface_id"       = ""
       "transit_gateway_id"         = ""
       "vpc_endpoint_id"            = ""
+      "core_network_arn"           = ""
     }
 
 
@@ -51,8 +53,8 @@ resource "aws_route_table" "pubilc-route" {
 
   route = [
     {
-      cidr_block                = "var.DEFAULT_VPC_CIDR"
-      vpc_peering_connection_id = aws_vpc_peering_connection.peer.id
+      cidr_block                   = "var.DEFAULT_VPC_CIDR"
+      vpc_peering_connection_id    = aws_vpc_peering_connection.peer.id
       cidr_block                   = var.DEFAULT_VPC_CIDR
       vpc_peering_connection_id    = aws_vpc_peering_connection.peer.id
       carrier_gateway_id           = ""
@@ -66,10 +68,11 @@ resource "aws_route_table" "pubilc-route" {
       "network_interface_id"       = ""
       "transit_gateway_id"         = ""
       "vpc_endpoint_id"            = ""
+      "core_network_arn"           = ""
     },
     {
-      cidr_block   = "0.0.0.0/0"
-      "gateway_id" = aws_internet_gateway.igw.id
+      cidr_block                   = "0.0.0.0/0"
+      "gateway_id"                 = aws_internet_gateway.igw.id
       cidr_block                   = var.DEFAULT_VPC_CIDR
       vpc_peering_connection_id    = aws_vpc_peering_connection.peer.id
       carrier_gateway_id           = ""
@@ -83,6 +86,7 @@ resource "aws_route_table" "pubilc-route" {
       "network_interface_id"       = ""
       "transit_gateway_id"         = ""
       "vpc_endpoint_id"            = ""
+      "core_network_arn"           = ""
     }
 
 
