@@ -13,5 +13,5 @@ resource "aws_vpc_ipv4_cidr_block_association" "addon" {
 }
 
 output "default_vpc_cidr" {
-  value = "var.DEFAULT_VPC_CIDR"
+  value = var.DEFAULT_VPC_CIDR
 }
