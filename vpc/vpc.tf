@@ -11,3 +11,7 @@ resource "aws_vpc_ipv4_cidr_block_association" "addon" {
   vpc_id     = aws_vpc.main.id
   cidr_block = element(var.VPC_CIDR_ADDON, count.index )
 }
+
+output "default_vpc_cidr" {
+  value = "var.DEFAULT_VPC_CIDR"
+}
