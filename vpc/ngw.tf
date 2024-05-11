@@ -1,5 +1,5 @@
 resource "aws_eip" "ngw" {
-  vpc = true
+  domain                    = "vpc"
   tags = {
     Name = "${var.ENV}-ngw-ip"
   }
