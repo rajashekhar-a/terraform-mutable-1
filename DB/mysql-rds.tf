@@ -13,15 +13,15 @@ resource "aws_db_parameter_group" "mysql-pg" {
 }
 
 resource "aws_db_instance" "mysql" {
-  allocated_storage    = 10
-  db_name              = "mysql-dev"
-  engine               = "mysql"
-  engine_version       = "5.7"
-  instance_class       = "db.t3.micro"
-  username             = local.ssh_pass
-  password             = local.ssh_pass
-  parameter_group_name = aws_db_parameter_group.mysql-pg.name
-  skip_final_snapshot  = true
+  allocated_storage      = 10
+  db_name                = "mysqldev"
+  engine                 = "mysql"
+  engine_version         = "5.7"
+  instance_class         = "db.t3.micro"
+  username               = local.ssh_pass
+  password               = local.ssh_pass
+  parameter_group_name   = aws_db_parameter_group.mysql-pg.name
+  skip_final_snapshot    = true
   vpc_security_group_ids = [aws_security_group.mysql.id]
   db_subnet_group_name   = aws_db_subnet_group.mysql-subnet-group.name
 }
