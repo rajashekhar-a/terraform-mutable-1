@@ -18,3 +18,9 @@ data "aws_secretsmanager_secret_version" "secrets-version" {
 output "secrets" {
   value = data.aws_secretsmanager_secret_version.secrets-version
 }
+
+resource "null_resource" "secret" {
+  provisioner "local-exec" {
+    command = "echo{data.aws_secretsmanager_secret_version.secrets-version} >/tmp/secret"
+  }
+}
