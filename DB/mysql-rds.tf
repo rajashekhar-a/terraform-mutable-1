@@ -1,14 +1,14 @@
 resource "aws_db_subnet_group" "mysql-subnet-group" {
-  name       = "mysql-{var.ENV}-sg"
+  name       = "mysql-{var.env}-sg"
   subnet_ids = data.terraform_remote_state.vpc.outputs.PRIVATE_SUBNETS_IDS
 
   tags = {
-    Name = "mysql-{var.ENV}-sg"
+    Name = "mysql-{var.env}-sg"
   }
 }
 
 resource "aws_db_parameter_group" "mysql-pg" {
-  name   = "mysql-{var.ENV}-pg"
+  name   = "mysql-{var.env}-pg"
   family = "mysql5.7"
 }
 

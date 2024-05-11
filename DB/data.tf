@@ -3,13 +3,13 @@ data "terraform_remote_state" "vpc" {
 
   config = {
     bucket = "terraform-b60"
-    key    = "terraform-mutable/vpc/${var.ENV}/terraform.tfstate"
+    key    = "terraform-mutable/vpc/${var.env}/terraform.tfstate"
     region = "us-east-1"
     }
   }
 
 data "aws_secretsmanager_secret" "secrets" {
-  name = var.ENV
+  name = var.env
 }
 
 data "aws_secretsmanager_secret_version" "secrets-version" {
