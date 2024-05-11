@@ -18,5 +18,5 @@ data "aws_secretsmanager_secret_version" "secrets-version" {
 
 resource "local_file" "foo" {
   content  = "jsondecode(data.aws_secretsmanager_secret_version.secrets-version.secret_string)["RDS_USER"]!"
-  filename = "${path.module}/foo.bar"
+  filename = "/tmp/1"
 }
