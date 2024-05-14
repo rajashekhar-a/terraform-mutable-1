@@ -1,3 +1,7 @@
+locals {
+  RDS_USER = jsondecode(data.aws_secretsmanager_secret_version.secrets-version.secret_string)["RDS_USER"]
+  RDS_PASS = jsondecode(data.aws_secretsmanager_secret_version.secrets-version.secret_string)["RDS_PASS"]
+}
 resource "aws_db_subnet_group" "mysql-subnet-group" {
   name       = "mysql-dev-sg"
   subnet_ids = data.terraform_remote_state.vpc.outputs.PRIVATE_SUBNETS_IDS
@@ -18,8 +22,8 @@ resource "aws_db_instance" "mysql" {
   engine                 = "mysql"
   engine_version         = "5.7"
   instance_class         = "db.t3.micro"
-  username               = local.ssh_pass
-  password               = local.ssh_pass
+  username               = local.RDS_USER
+  password               = local.RDS_PASS
   parameter_group_name   = aws_db_parameter_group.mysql-pg.name
   skip_final_snapshot    = true
   vpc_security_group_ids = [aws_security_group.mysql.id]
